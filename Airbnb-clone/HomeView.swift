@@ -46,10 +46,7 @@ extension HomeView {
     }
     
     func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Content>{
-        let registration = UICollectionView.CellRegistration<SmallSquareCell, Content> {
-                cell, _, content in
-                cell.configure(with: content)
-        }
+        let registration = SmallSquareCell.registration()
         let dataSource = UICollectionViewDiffableDataSource<Section, Content>(collectionView: collectionView) { view, indexPath, item -> UICollectionViewCell? in
             let section = Section.allCases[indexPath.section]
             switch section {

@@ -1,46 +1,53 @@
 //
-//  SmallSquareCell.swift
+//  LargeSquareCell.swift
 //  Airbnb-clone
 //
-//  Created by Xcaret Mora on 17/02/24.
+//  Created by Xcaret Mora on 22/02/24.
 //
 
 import UIKit
 import Anchorage
 
-typealias SmallSquareCell = ContentCell<SmallSquareView>
+typealias LargeSquareCell = ContentCell
 
-final class SmallSquareView: ProgrammaticView, ContentConfiguringView {
-    
+class LargeSquareView: ProgrammaticView, ContentConfiguringView {
+ 
+    private let mainStack = UIStackView()
     private let imageView = UIImageView()
-    private let stackView = UIStackView()
+    private let labelStack = UIStackView()
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
     
+    
     override func configure() {
+        
+        mainStack.axis = .vertical
+        mainStack.spacing = 15
+        mainStack.backgroundColor = .brown
+        
         imageView.backgroundColor = .secondarySystemFill
         imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
         
-        stackView.axis = .vertical
-        stackView.spacing = 8
+        labelStack.axis = .vertical
+        labelStack.spacing = 5
+        labelStack.backgroundColor = .cyan
         
         titleLabel.font = .custom(style: .headline)
+        titleLabel.textColor = .label
+        
         subtitleLabel.font = .custom(style: .subheadline)
+        subtitleLabel.textColor = .label
         
     }
+    
     override func constraint() {
-        addSubviews(imageView, stackView)
-        stackView.addArrangedSubviews(titleLabel, subtitleLabel)
+        addSubview(mainStack)
+        mainStack.addArrangedSubviews(imageView, labelStack)
+        labelStack.addArrangedSubviews(titleLabel, subtitleLabel)
         
-        imageView.verticalAnchors == verticalAnchors
-        imageView.leadingAnchor == leadingAnchor
+        mainStack.edgeAnchors == edgeAnchors
         imageView.widthAnchor == imageView.heightAnchor
-        
-        stackView.leadingAnchor == imageView.trailingAnchor + 10
-        stackView.trailingAnchor == trailingAnchor
-        stackView.centerYAnchor == centerYAnchor
-        
     }
     
     func configure(with content: Content?) {
@@ -48,5 +55,5 @@ final class SmallSquareView: ProgrammaticView, ContentConfiguringView {
         subtitleLabel.text = content?.subtitle
         imageView.image = UIImage(named: content?.image)
     }
-    
 }
+

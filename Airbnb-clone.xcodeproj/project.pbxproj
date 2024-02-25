@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C3B6A642B88464100A0C5CF /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3B6A632B88464100A0C5CF /* ContentCell.swift */; };
+		7C3B6A662B884AAB00A0C5CF /* LargeSquareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3B6A652B884AAB00A0C5CF /* LargeSquareCell.swift */; };
 		7CE700B22B815DD300DC34C3 /* Anchorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7CE700B12B815DD300DC34C3 /* Anchorage */; };
 		7CE700B42B815E4400DC34C3 /* ProgrammaticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE700B32B815E4400DC34C3 /* ProgrammaticView.swift */; };
 		7CE700B72B815FB300DC34C3 /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE700B62B815FB300DC34C3 /* UIView+Helpers.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C3B6A632B88464100A0C5CF /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
+		7C3B6A652B884AAB00A0C5CF /* LargeSquareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeSquareCell.swift; sourceTree = "<group>"; };
 		7CE700B32B815E4400DC34C3 /* ProgrammaticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgrammaticView.swift; sourceTree = "<group>"; };
 		7CE700B62B815FB300DC34C3 /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 		7CE700B82B81605E00DC34C3 /* UIStackView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Helpers.swift"; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 			children = (
 				7CE700C62B81682900DC34C3 /* SmallSquareCell.swift */,
 				7CE700C82B816EE000DC34C3 /* NSCollectionLayoutSection+Layouts.swift */,
+				7C3B6A632B88464100A0C5CF /* ContentCell.swift */,
+				7C3B6A652B884AAB00A0C5CF /* LargeSquareCell.swift */,
 			);
 			path = "Collection View Elements";
 			sourceTree = "<group>";
@@ -209,6 +215,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CE700BF2B8161F600DC34C3 /* HomeView.swift in Sources */,
+				7C3B6A642B88464100A0C5CF /* ContentCell.swift in Sources */,
+				7C3B6A662B884AAB00A0C5CF /* LargeSquareCell.swift in Sources */,
 				7CE700B72B815FB300DC34C3 /* UIView+Helpers.swift in Sources */,
 				7CE700C72B81682900DC34C3 /* SmallSquareCell.swift in Sources */,
 				7CE700BD2B81619E00DC34C3 /* UIFont+Custom.swift in Sources */,
