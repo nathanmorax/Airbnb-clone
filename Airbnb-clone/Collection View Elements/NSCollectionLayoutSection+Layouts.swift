@@ -28,4 +28,28 @@ extension NSCollectionLayoutSection {
         
         return section
     }
+   
+   static func sideScrollingOneItem() -> NSCollectionLayoutSection {
+      
+      let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                            heightDimension: .estimated(312))
+      
+      let item = NSCollectionLayoutItem(layoutSize: itemSize)
+      
+      let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .estimated(312))
+      
+      let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+      
+      let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100))
+      
+      let header = NSCollectionLayoutBoundarySupplementaryItem.header(layoutSize: headerSize)
+      
+      let section = NSCollectionLayoutSection(group: group)
+      section.orthogonalScrollingBehavior = .groupPaging
+      section.interGroupSpacing = 8
+      section.contentInsets = .init(top: 20, leading: 20, bottom: 20, trailing: 20)
+      section.boundarySupplementaryItems = [header]
+      
+      return section
+   }
 }

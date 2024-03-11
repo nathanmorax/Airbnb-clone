@@ -8,7 +8,7 @@
 import UIKit
 import Anchorage
 
-typealias LargeSquareCell = ContentCell
+typealias LargeSquareCell = ContentCell<LargeSquareView>
 
 class LargeSquareView: ProgrammaticView, ContentConfiguringView {
  
@@ -23,7 +23,7 @@ class LargeSquareView: ProgrammaticView, ContentConfiguringView {
         
         mainStack.axis = .vertical
         mainStack.spacing = 15
-        mainStack.backgroundColor = .brown
+        //mainStack.backgroundColor = .brown
         
         imageView.backgroundColor = .secondarySystemFill
         imageView.layer.cornerRadius = 8
@@ -31,7 +31,7 @@ class LargeSquareView: ProgrammaticView, ContentConfiguringView {
         
         labelStack.axis = .vertical
         labelStack.spacing = 5
-        labelStack.backgroundColor = .cyan
+        //labelStack.backgroundColor = .cyan
         
         titleLabel.font = .custom(style: .headline)
         titleLabel.textColor = .label
