@@ -14,6 +14,6 @@ class HeaderView: ProgrammaticView {
     }
     
     override func constraint() {
-        heightAnchor == 200
+        heightAnchor == 80
     }
 }

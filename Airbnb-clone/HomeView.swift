@@ -42,6 +42,8 @@ extension HomeView {
             return .sideScrollingTwoItem()
          case .experiences:
             return .invertedSideScrollingOneItem()
+         case .info:
+            return .footer()
          default:
             return .sideScrollingOneItem()
          }
@@ -52,21 +54,23 @@ extension HomeView {
    
    func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Content>{
       let registration = SmallSquareCell.registration()
-      let registrationLarge = LargeSquareCell.registration()
       let registrationInvertedLarge = InvertedLargeSquareCell.registration()
+      let registrationFooter = FooterCell.registration() { indexPath in
+         indexPath.item % 4 != 3
+         
+      }
+      let registrationLarge = LargeSquareCell.registration()
 
-      
       let dataSource = UICollectionViewDiffableDataSource<Section, Content>(collectionView: collectionView) { view, indexPath, content -> UICollectionViewCell? in
          let section = Section.allCases[indexPath.section]
          
          switch section {
          case .nearby:
-            //let registration = SmallSquareCell.registration()
             return view.dequeueConfiguredReusableCell(using: registration, for: indexPath, item: content)
-            
          case .experiences:
             return view.dequeueConfiguredReusableCell(using: registrationInvertedLarge, for: indexPath, item: content)
-            
+         case .info:
+            return view.dequeueConfiguredReusableCell(using: registrationFooter, for: indexPath, item: content)
          default:
             return view.dequeueConfiguredReusableCell(using: registrationLarge, for: indexPath, item: content)
          }
