@@ -40,35 +40,51 @@ extension HomeView {
          switch section {
          case .nearby:
             return .sideScrollingTwoItem()
+         case .experiences:
+            return .invertedSideScrollingOneItem()
          default:
             return .sideScrollingOneItem()
          }
       }
+      layout.registerBackgrounds()
       return UICollectionView(frame: .zero, collectionViewLayout: layout)
    }
    
    func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Content>{
       let registration = SmallSquareCell.registration()
       let registrationLarge = LargeSquareCell.registration()
+      let registrationInvertedLarge = InvertedLargeSquareCell.registration()
+
       
       let dataSource = UICollectionViewDiffableDataSource<Section, Content>(collectionView: collectionView) { view, indexPath, content -> UICollectionViewCell? in
          let section = Section.allCases[indexPath.section]
+         
          switch section {
          case .nearby:
             //let registration = SmallSquareCell.registration()
             return view.dequeueConfiguredReusableCell(using: registration, for: indexPath, item: content)
             
+         case .experiences:
+            return view.dequeueConfiguredReusableCell(using: registrationInvertedLarge, for: indexPath, item: content)
+            
          default:
-
             return view.dequeueConfiguredReusableCell(using: registrationLarge, for: indexPath, item: content)
          }
       }
       
       let headers = Section.allCases.map(\.headerContent)
       let headerResgistration = SectionHeader.registration(headers: headers)
-      
+      let registrationInvertedHeader = InvertedHeader.registration(headers: headers)
+
       dataSource.supplementaryViewProvider = { collectionView, string, indexPath in
-         collectionView.dequeueConfiguredReusableSupplementary(using: headerResgistration, for: indexPath)
+         let section = Section.allCases[indexPath.section]
+         switch section {
+         case .experiences:
+            return collectionView.dequeueConfiguredReusableSupplementary(using: registrationInvertedHeader, for: indexPath)
+         default:
+            return collectionView.dequeueConfiguredReusableSupplementary(using: headerResgistration, for: indexPath)
+         }
+         
       }
       
       return dataSource

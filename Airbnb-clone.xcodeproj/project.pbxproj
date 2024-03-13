@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0B4070A22B9F9EA8001A12B3 /* ContentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4070A12B9F9EA8001A12B3 /* ContentHeader.swift */; };
+		0B4070A42B9FB9E1001A12B3 /* UITraitCollection+Inverted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4070A32B9FB9E0001A12B3 /* UITraitCollection+Inverted.swift */; };
+		0B4070A62B9FE36C001A12B3 /* UIColor+Inverted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4070A52B9FE36C001A12B3 /* UIColor+Inverted.swift */; };
+		0B4070A82B9FEAB8001A12B3 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4070A72B9FEAB8001A12B3 /* BackgroundView.swift */; };
 		7C3B6A642B88464100A0C5CF /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3B6A632B88464100A0C5CF /* ContentCell.swift */; };
 		7C3B6A662B884AAB00A0C5CF /* LargeSquareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3B6A652B884AAB00A0C5CF /* LargeSquareCell.swift */; };
 		7CE700B22B815DD300DC34C3 /* Anchorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7CE700B12B815DD300DC34C3 /* Anchorage */; };
@@ -31,6 +34,9 @@
 
 /* Begin PBXFileReference section */
 		0B4070A12B9F9EA8001A12B3 /* ContentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentHeader.swift; sourceTree = "<group>"; };
+		0B4070A32B9FB9E0001A12B3 /* UITraitCollection+Inverted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+Inverted.swift"; sourceTree = "<group>"; };
+		0B4070A52B9FE36C001A12B3 /* UIColor+Inverted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Inverted.swift"; sourceTree = "<group>"; };
+		0B4070A72B9FEAB8001A12B3 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		7C3B6A632B88464100A0C5CF /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
 		7C3B6A652B884AAB00A0C5CF /* LargeSquareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeSquareCell.swift; sourceTree = "<group>"; };
 		7CE700B32B815E4400DC34C3 /* ProgrammaticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgrammaticView.swift; sourceTree = "<group>"; };
@@ -72,6 +78,8 @@
 				7CE700B82B81605E00DC34C3 /* UIStackView+Helpers.swift */,
 				7CE700BA2B81610A00DC34C3 /* UIImage+Helpers.swift */,
 				7CE700BC2B81619E00DC34C3 /* UIFont+Custom.swift */,
+				0B4070A32B9FB9E0001A12B3 /* UITraitCollection+Inverted.swift */,
+				0B4070A52B9FE36C001A12B3 /* UIColor+Inverted.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -92,6 +100,7 @@
 				7C3B6A632B88464100A0C5CF /* ContentCell.swift */,
 				7C3B6A652B884AAB00A0C5CF /* LargeSquareCell.swift */,
 				0B4070A12B9F9EA8001A12B3 /* ContentHeader.swift */,
+				0B4070A72B9FEAB8001A12B3 /* BackgroundView.swift */,
 			);
 			path = "Collection View Elements";
 			sourceTree = "<group>";
@@ -222,6 +231,7 @@
 				0B4070A22B9F9EA8001A12B3 /* ContentHeader.swift in Sources */,
 				7C3B6A662B884AAB00A0C5CF /* LargeSquareCell.swift in Sources */,
 				7CE700B72B815FB300DC34C3 /* UIView+Helpers.swift in Sources */,
+				0B4070A42B9FB9E1001A12B3 /* UITraitCollection+Inverted.swift in Sources */,
 				7CE700C72B81682900DC34C3 /* SmallSquareCell.swift in Sources */,
 				7CE700BD2B81619E00DC34C3 /* UIFont+Custom.swift in Sources */,
 				7CE700C42B8163B100DC34C3 /* Content.swift in Sources */,
@@ -229,9 +239,11 @@
 				7CFC64B72B81539700DBFAEA /* AppDelegate.swift in Sources */,
 				7CE700C12B81632900DC34C3 /* HeaderView.swift in Sources */,
 				7CE700BB2B81610A00DC34C3 /* UIImage+Helpers.swift in Sources */,
+				0B4070A62B9FE36C001A12B3 /* UIColor+Inverted.swift in Sources */,
 				7CE700B92B81605E00DC34C3 /* UIStackView+Helpers.swift in Sources */,
 				7CE700B42B815E4400DC34C3 /* ProgrammaticView.swift in Sources */,
 				7CFC64B92B81539700DBFAEA /* SceneDelegate.swift in Sources */,
+				0B4070A82B9FEAB8001A12B3 /* BackgroundView.swift in Sources */,
 				7CE700C92B816EE000DC34C3 /* NSCollectionLayoutSection+Layouts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
