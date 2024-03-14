@@ -8,15 +8,22 @@
 import UIKit
 import Anchorage
 
+protocol HomeViewDelegate: AnyObject {
+    func updateStatusBarStyle(to style: UIStatusBarStyle)
+}
+
 class HomeView: ProgrammaticView {
+   weak var delegate: HomeViewDelegate?
    
    private let headerView = HeaderView()
    private lazy var collectionView = makeCollectionView()
    private lazy var dataSource = makeDataSource()
+   private var oldYOffset: CGFloat = 0
    
    override func configure() {
       collectionView.backgroundColor = .systemBackground
       collectionView.dataSource = dataSource
+      collectionView.delegate = self
    }
    override func constraint() {
       addSubviews(headerView, collectionView)
@@ -93,4 +100,19 @@ extension HomeView {
       
       return dataSource
    }
+}
+
+extension HomeView: UICollectionViewDelegate {
+   func scrollViewDidScroll(_ scrollView: UIScrollView) {
+      let yOffset = scrollView.contentOffset.y
+      let updatedY = headerView.updateHeader(newY: yOffset, oldY: oldYOffset)
+      scrollView.contentOffset.y = updatedY
+      oldYOffset = scrollView.contentOffset.y
+   }
+}
+
+extension HomeView: HeaderViewDelegate {
+    func updateStatusBarStyle(to style: UIStatusBarStyle) {
+        delegate?.updateStatusBarStyle(to: style)
+    }
 }

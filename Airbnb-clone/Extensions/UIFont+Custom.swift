@@ -27,6 +27,14 @@ extension UIFont {
       UIFontMetrics(forTextStyle: .headline)
          .scaledFont(for: .systemFont(ofSize: 12, weight: .light))
    }
+   private static var largeTitle: UIFont {
+      UIFontMetrics(forTextStyle: .largeTitle)
+         .scaledFont(for: .systemFont(ofSize: 64, weight: .heavy))
+   }
+   private static var button: UIFont {
+      UIFontMetrics(forTextStyle: .headline)
+         .scaledFont(for: .systemFont(ofSize: 13, weight: .semibold))
+   }
 }
 
 extension UIFont {
@@ -35,6 +43,8 @@ extension UIFont {
       case title4
       case headline
       case subheadline
+      case largeTitle
+      case button
    }
    
    static func custom(style: Style) -> UIFont {
@@ -43,6 +53,8 @@ extension UIFont {
       case .title4: return .title4
       case .headline: return .headline
       case .subheadline: return .subheadline
+      case .largeTitle: return .largeTitle
+      case .button: return .button
       }
    }
 }

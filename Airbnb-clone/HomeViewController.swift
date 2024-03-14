@@ -8,26 +8,29 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    
-    private lazy var contentView: HomeView = .init()
-
-    override func loadView() {
-        view = contentView
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        updateList()
-    }
-    
-    private func updateList() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Content>()
-        
-        snapshot.appendSections(Section.allCases)
-        Section.allCases.forEach {
-            snapshot.appendItems($0.stubData(), toSection: $0)
-        }
-        contentView.apply(snapshot)
-    }
+   
+   private lazy var contentView: HomeView = .init()
+   private var statusBarStyle: UIStatusBarStyle = .lightContent
+   
+   override var preferredStatusBarStyle: UIStatusBarStyle { statusBarStyle }
+   
+   override func loadView() {
+      view = contentView
+   }
+   
+   override func viewDidLoad() {
+      super.viewDidLoad()
+      updateList()
+   }
+   
+   private func updateList() {
+      var snapshot = NSDiffableDataSourceSnapshot<Section, Content>()
+      
+      snapshot.appendSections(Section.allCases)
+      Section.allCases.forEach {
+         snapshot.appendItems($0.stubData(), toSection: $0)
+      }
+      contentView.apply(snapshot)
+   }
 }
 
