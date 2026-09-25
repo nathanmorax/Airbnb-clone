@@ -1,0 +1,140 @@
+{
+  "conversations": [
+    {
+      "id": 1,
+      "host": {
+        "id": 1,
+        "name": "Maren",
+        "avatarColor": "#B5485D",
+        "superhost": true
+      },
+      "listing": {
+        "id": 1,
+        "title": "Riverside A-frame cabin",
+        "city": "Estes Park",
+        "image": "cabins-cottages"
+      },
+      "trip": {
+        "id": 1,
+        "checkIn": "2026-10-16T22:00:00Z",
+        "checkOut": "2026-10-18T17:00:00Z",
+        "guests": 2
+      },
+      "lastMessage": "The door code is in your check-in guide. See you on Friday!",
+      "updatedAt": "2026-09-24T20:14:00Z",
+      "unread": true,
+      "messages": [
+        {
+          "id": 1,
+          "sender": "guest",
+          "text": "Hi Maren! We're arriving around 5 PM on Friday. Is parking right by the cabin?",
+          "sentAt": "2026-09-22T15:10:00Z"
+        },
+        {
+          "id": 2,
+          "sender": "host",
+          "text": "Hi Nathan! Yes, there are two spots next to the deck. The road is paved all the way.",
+          "sentAt": "2026-09-22T16:45:00Z"
+        },
+        {
+          "id": 3,
+          "sender": "guest",
+          "text": "Perfect, thanks. Where do we find the door code?",
+          "sentAt": "2026-09-24T19:58:00Z"
+        },
+        {
+          "id": 4,
+          "sender": "host",
+          "text": "The door code is in your check-in guide. See you on Friday!",
+          "sentAt": "2026-09-24T20:14:00Z"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "host": {
+        "id": 2,
+        "name": "Diego",
+        "avatarColor": "#3E6C8F",
+        "superhost": false
+      },
+      "listing": {
+        "id": 6,
+        "title": "Ski-in ski-out condo",
+        "city": "Breckenridge",
+        "image": "breckenridge"
+      },
+      "trip": {
+        "id": 2,
+        "checkIn": "2026-03-20T22:00:00Z",
+        "checkOut": "2026-03-23T17:00:00Z",
+        "guests": 4
+      },
+      "lastMessage": "Thanks for staying with us, you're welcome back anytime.",
+      "updatedAt": "2026-03-24T16:02:00Z",
+      "unread": false,
+      "messages": [
+        {
+          "id": 5,
+          "sender": "guest",
+          "text": "We just checked out. Thanks for everything!",
+          "sentAt": "2026-03-23T17:20:00Z"
+        },
+        {
+          "id": 6,
+          "sender": "host",
+          "text": "Thanks for staying with us, you're welcome back anytime.",
+          "sentAt": "2026-03-24T16:02:00Z"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "host": {
+        "id": 1,
+        "name": "Maren",
+        "avatarColor": "#B5485D",
+        "superhost": true
+      },
+      "listing": {
+        "id": 9,
+        "title": "Lakefront cabin with private dock",
+        "city": "Grand Lake",
+        "image": "grand-lake"
+      },
+      "trip": {
+        "id": 3,
+        "checkIn": "2025-08-08T22:00:00Z",
+        "checkOut": "2025-08-11T17:00:00Z",
+        "guests": 3
+      },
+      "lastMessage": "Glad you enjoyed the lake! Safe travels.",
+      "updatedAt": "2025-08-12T18:30:00Z",
+      "unread": false,
+      "messages": [
+        {
+          "id": 7,
+          "sender": "host",
+          "text": "Glad you enjoyed the lake! Safe travels.",
+          "sentAt": "2025-08-12T18:30:00Z"
+        }
+      ]
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "title": "Your trip to Estes Park is in 3 weeks",
+      "subtitle": "Review your check-in details.",
+      "date": "2026-09-25T15:00:00Z",
+      "read": false
+    },
+    {
+      "id": 2,
+      "title": "Rate your stay in Breckenridge",
+      "subtitle": "Your review helps other guests.",
+      "date": "2026-03-24T18:00:00Z",
+      "read": true
+    }
+  ]
+}

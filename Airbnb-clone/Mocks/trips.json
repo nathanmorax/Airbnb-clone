@@ -1,0 +1,98 @@
+{
+  "upcoming": [
+    {
+      "id": 1,
+      "checkIn": "2026-10-16T22:00:00Z",
+      "checkOut": "2026-10-18T17:00:00Z",
+      "guests": 2,
+      "status": "upcoming",
+      "confirmationCode": "HM4K2QZ8TX",
+      "listing": {
+        "id": 1,
+        "title": "Riverside A-frame cabin",
+        "city": "Estes Park",
+        "type": "Entire cabin",
+        "rating": 4.96,
+        "reviewCount": 212,
+        "pricePerNight": 214,
+        "currency": "USD",
+        "image": "cabins-cottages"
+      },
+      "host": {
+        "id": 1,
+        "name": "Maren"
+      }
+    }
+  ],
+  "past": [
+    {
+      "id": 2,
+      "checkIn": "2026-03-20T22:00:00Z",
+      "checkOut": "2026-03-23T17:00:00Z",
+      "guests": 4,
+      "status": "past",
+      "confirmationCode": "HMB7R1LQ2P",
+      "listing": {
+        "id": 6,
+        "title": "Ski-in ski-out condo",
+        "city": "Breckenridge",
+        "type": "Entire condo",
+        "rating": 4.87,
+        "reviewCount": 301,
+        "pricePerNight": 265,
+        "currency": "USD",
+        "image": "breckenridge"
+      },
+      "host": {
+        "id": 2,
+        "name": "Diego"
+      }
+    },
+    {
+      "id": 3,
+      "checkIn": "2025-08-08T22:00:00Z",
+      "checkOut": "2025-08-11T17:00:00Z",
+      "guests": 3,
+      "status": "past",
+      "confirmationCode": "HMZ9X3CV5N",
+      "listing": {
+        "id": 9,
+        "title": "Lakefront cabin with private dock",
+        "city": "Grand Lake",
+        "type": "Entire cabin",
+        "rating": 4.97,
+        "reviewCount": 89,
+        "pricePerNight": 245,
+        "currency": "USD",
+        "image": "grand-lake"
+      },
+      "host": {
+        "id": 1,
+        "name": "Maren"
+      }
+    },
+    {
+      "id": 4,
+      "checkIn": "2025-02-14T22:00:00Z",
+      "checkOut": "2025-02-16T17:00:00Z",
+      "guests": 2,
+      "status": "past",
+      "confirmationCode": "HMQ2W8ER4T",
+      "listing": {
+        "id": 12,
+        "title": "Canyon view home",
+        "city": "Glenwood Springs",
+        "type": "Entire house",
+        "rating": 4.86,
+        "reviewCount": 76,
+        "pricePerNight": 219,
+        "currency": "USD",
+        "image": "glenwood-springs"
+      },
+      "host": {
+        "id": 2,
+        "name": "Diego"
+      }
+    }
+  ]
+}

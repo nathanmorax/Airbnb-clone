@@ -1,0 +1,171 @@
+{
+  "wishlists": [
+    {
+      "id": 1,
+      "name": "Colorado weekend",
+      "stayCount": 4,
+      "coverImages": [
+        "cabins-cottages",
+        "breckenridge",
+        "grand-lake"
+      ],
+      "listings": [
+        {
+          "id": 1,
+          "title": "Riverside A-frame cabin",
+          "city": "Estes Park",
+          "type": "Entire cabin",
+          "rating": 4.96,
+          "reviewCount": 212,
+          "pricePerNight": 214,
+          "currency": "USD",
+          "image": "cabins-cottages"
+        },
+        {
+          "id": 6,
+          "title": "Ski-in ski-out condo",
+          "city": "Breckenridge",
+          "type": "Entire condo",
+          "rating": 4.87,
+          "reviewCount": 301,
+          "pricePerNight": 265,
+          "currency": "USD",
+          "image": "breckenridge"
+        },
+        {
+          "id": 9,
+          "title": "Lakefront cabin with private dock",
+          "city": "Grand Lake",
+          "type": "Entire cabin",
+          "rating": 4.97,
+          "reviewCount": 89,
+          "pricePerNight": 245,
+          "currency": "USD",
+          "image": "grand-lake"
+        },
+        {
+          "id": 11,
+          "title": "Hot springs guest suite",
+          "city": "Idaho Springs",
+          "type": "Private suite",
+          "rating": 4.9,
+          "reviewCount": 142,
+          "pricePerNight": 119,
+          "currency": "USD",
+          "image": "idaho-springs"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Cabins",
+      "stayCount": 3,
+      "coverImages": [
+        "cabins-cottages",
+        "cabins-cottages",
+        "unique-stays"
+      ],
+      "listings": [
+        {
+          "id": 1,
+          "title": "Riverside A-frame cabin",
+          "city": "Estes Park",
+          "type": "Entire cabin",
+          "rating": 4.96,
+          "reviewCount": 212,
+          "pricePerNight": 214,
+          "currency": "USD",
+          "image": "cabins-cottages"
+        },
+        {
+          "id": 7,
+          "title": "Historic miner's cabin on Main Street",
+          "city": "Breckenridge",
+          "type": "Entire cabin",
+          "rating": 4.93,
+          "reviewCount": 178,
+          "pricePerNight": 198,
+          "currency": "USD",
+          "image": "cabins-cottages"
+        },
+        {
+          "id": 3,
+          "title": "Treehouse above the pines",
+          "city": "Estes Park",
+          "type": "Treehouse",
+          "rating": 4.98,
+          "reviewCount": 96,
+          "pricePerNight": 176,
+          "currency": "USD",
+          "image": "unique-stays"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Lake trips",
+      "stayCount": 2,
+      "coverImages": [
+        "grand-lake",
+        "pets-welcome"
+      ],
+      "listings": [
+        {
+          "id": 9,
+          "title": "Lakefront cabin with private dock",
+          "city": "Grand Lake",
+          "type": "Entire cabin",
+          "rating": 4.97,
+          "reviewCount": 89,
+          "pricePerNight": 245,
+          "currency": "USD",
+          "image": "grand-lake"
+        },
+        {
+          "id": 10,
+          "title": "Cozy cottage, pets welcome",
+          "city": "Grand Lake",
+          "type": "Entire cottage",
+          "rating": 4.88,
+          "reviewCount": 57,
+          "pricePerNight": 131,
+          "currency": "USD",
+          "image": "pets-welcome"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "With the dog",
+      "stayCount": 2,
+      "coverImages": [
+        "pets-welcome",
+        "pets-welcome"
+      ],
+      "listings": [
+        {
+          "id": 4,
+          "title": "Dog-friendly cottage near downtown",
+          "city": "Estes Park",
+          "type": "Entire cottage",
+          "rating": 4.91,
+          "reviewCount": 63,
+          "pricePerNight": 142,
+          "currency": "USD",
+          "image": "pets-welcome"
+        },
+        {
+          "id": 10,
+          "title": "Cozy cottage, pets welcome",
+          "city": "Grand Lake",
+          "type": "Entire cottage",
+          "rating": 4.88,
+          "reviewCount": 57,
+          "pricePerNight": 131,
+          "currency": "USD",
+          "image": "pets-welcome"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "profile": {
+    "id": 1,
+    "firstName": "Nathan",
+    "avatarURL": null,
+    "memberSince": 2019,
+    "isHost": false
+  },
+  "hostingPromo": {
+    "title": "Earn money from your extra space",
+    "subtitle": "Learn more about hosting",
+    "image": "host-your-home"
+  },
+  "sections": [
+    {
+      "title": "Account settings",
+      "rows": [
+        {
+          "id": "personal-info",
+          "title": "Personal information",
+          "icon": "person.circle"
+        },
+        {
+          "id": "payments",
+          "title": "Payments and payouts",
+          "icon": "creditcard"
+        },
+        {
+          "id": "notifications",
+          "title": "Notifications",
+          "icon": "bell"
+        },
+        {
+          "id": "work-travel",
+          "title": "Travel for work",
+          "icon": "briefcase"
+        }
+      ]
+    },
+    {
+      "title": "Hosting",
+      "rows": [
+        {
+          "id": "list-space",
+          "title": "List your space",
+          "icon": "house"
+        },
+        {
+          "id": "host-experience",
+          "title": "Host an Experience",
+          "icon": "sparkles"
+        }
+      ]
+    },
+    {
+      "title": "Support",
+      "rows": [
+        {
+          "id": "how-it-works",
+          "title": "How Airbnb works",
+          "icon": "questionmark.circle"
+        },
+        {
+          "id": "help",
+          "title": "Get help",
+          "icon": "questionmark.circle"
+        },
+        {
+          "id": "feedback",
+          "title": "Give us feedback",
+          "icon": "pencil"
+        }
+      ]
+    },
+    {
+      "title": "Legal",
+      "rows": [
+        {
+          "id": "terms",
+          "title": "Terms of Service",
+          "icon": "doc.text"
+        }
+      ]
+    }
+  ]
+}
