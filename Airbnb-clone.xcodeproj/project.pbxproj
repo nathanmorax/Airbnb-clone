@@ -37,6 +37,19 @@
 		A1B2C3D4E5F6020000000002 /* trips.json in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6020000000001 /* trips.json */; };
 		A1B2C3D4E5F6030000000002 /* inbox.json in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6030000000001 /* inbox.json */; };
 		A1B2C3D4E5F6040000000002 /* profile.json in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6040000000001 /* profile.json */; };
+		B1C2D3E4F5A6000000000002 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6000000000001 /* HTTPMethod.swift */; };
+		B1C2D3E4F5A6010000000002 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6010000000001 /* Endpoint.swift */; };
+		B1C2D3E4F5A6020000000002 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6020000000001 /* APIError.swift */; };
+		B1C2D3E4F5A6030000000002 /* APIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6030000000001 /* APIEnvironment.swift */; };
+		B1C2D3E4F5A6040000000002 /* LocalJSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6040000000001 /* LocalJSONLoader.swift */; };
+		B1C2D3E4F5A6050000000002 /* JSONCoding+Airbnb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6050000000001 /* JSONCoding+Airbnb.swift */; };
+		B1C2D3E4F5A6060000000002 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6060000000001 /* APIClient.swift */; };
+		C1D2E3F4A5B6000000000002 /* HomeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D2E3F4A5B6000000000001 /* HomeDTO.swift */; };
+		C1D2E3F4A5B6010000000002 /* HomeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D2E3F4A5B6010000000001 /* HomeEndpoint.swift */; };
+		C1D2E3F4A5B6020000000002 /* HomeDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D2E3F4A5B6020000000001 /* HomeDTO+Mapping.swift */; };
+		C1D2E3F4A5B6030000000002 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D2E3F4A5B6030000000001 /* HomeRepository.swift */; };
+		C1D2E3F4A5B6040000000002 /* HomeFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D2E3F4A5B6040000000001 /* HomeFeed.swift */; };
+		C1D2E3F4A5B6050000000002 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D2E3F4A5B6050000000001 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +84,19 @@
 		A1B2C3D4E5F6020000000001 /* trips.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trips.json; sourceTree = "<group>"; };
 		A1B2C3D4E5F6030000000001 /* inbox.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = inbox.json; sourceTree = "<group>"; };
 		A1B2C3D4E5F6040000000001 /* profile.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = profile.json; sourceTree = "<group>"; };
+		B1C2D3E4F5A6000000000001 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		B1C2D3E4F5A6010000000001 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		B1C2D3E4F5A6020000000001 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		B1C2D3E4F5A6030000000001 /* APIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironment.swift; sourceTree = "<group>"; };
+		B1C2D3E4F5A6040000000001 /* LocalJSONLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalJSONLoader.swift; sourceTree = "<group>"; };
+		B1C2D3E4F5A6050000000001 /* JSONCoding+Airbnb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONCoding+Airbnb.swift"; sourceTree = "<group>"; };
+		B1C2D3E4F5A6060000000001 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		C1D2E3F4A5B6000000000001 /* HomeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDTO.swift; sourceTree = "<group>"; };
+		C1D2E3F4A5B6010000000001 /* HomeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEndpoint.swift; sourceTree = "<group>"; };
+		C1D2E3F4A5B6020000000001 /* HomeDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeDTO+Mapping.swift"; sourceTree = "<group>"; };
+		C1D2E3F4A5B6030000000001 /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
+		C1D2E3F4A5B6040000000001 /* HomeFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeed.swift; sourceTree = "<group>"; };
+		C1D2E3F4A5B6050000000001 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +166,8 @@
 		7CFC64B52B81539700DBFAEA /* Airbnb-clone */ = {
 			isa = PBXGroup;
 			children = (
+				B1C2D3E4F5A6900000000003 /* Core */,
+				C1D2E3F4A5B6900000000003 /* Modules */,
 				7CE700C52B81680400DC34C3 /* Collection View Elements */,
 				7CE700C22B81638E00DC34C3 /* Models */,
 				7CE700B52B815F8300DC34C3 /* Extensions */,
@@ -178,6 +206,81 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		B1C2D3E4F5A6900000000003 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B1C2D3E4F5A6910000000003 /* Networking */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B1C2D3E4F5A6910000000003 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B1C2D3E4F5A6000000000001 /* HTTPMethod.swift */,
+				B1C2D3E4F5A6010000000001 /* Endpoint.swift */,
+				B1C2D3E4F5A6020000000001 /* APIError.swift */,
+				B1C2D3E4F5A6030000000001 /* APIEnvironment.swift */,
+				B1C2D3E4F5A6040000000001 /* LocalJSONLoader.swift */,
+				B1C2D3E4F5A6050000000001 /* JSONCoding+Airbnb.swift */,
+				B1C2D3E4F5A6060000000001 /* APIClient.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		C1D2E3F4A5B6900000000003 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				C1D2E3F4A5B6910000000003 /* Explore */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		C1D2E3F4A5B6910000000003 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				C1D2E3F4A5B6920000000003 /* Home */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		C1D2E3F4A5B6920000000003 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C1D2E3F4A5B6930000000003 /* Data */,
+				C1D2E3F4A5B6940000000003 /* Domain */,
+				C1D2E3F4A5B6950000000003 /* Presentation */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C1D2E3F4A5B6930000000003 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C1D2E3F4A5B6000000000001 /* HomeDTO.swift */,
+				C1D2E3F4A5B6010000000001 /* HomeEndpoint.swift */,
+				C1D2E3F4A5B6020000000001 /* HomeDTO+Mapping.swift */,
+				C1D2E3F4A5B6030000000001 /* HomeRepository.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		C1D2E3F4A5B6940000000003 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				C1D2E3F4A5B6040000000001 /* HomeFeed.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		C1D2E3F4A5B6950000000003 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				C1D2E3F4A5B6050000000001 /* HomeViewModel.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -209,7 +312,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 2630;
 				TargetAttributes = {
 					7CFC64B22B81539700DBFAEA = {
 						CreatedOnToolsVersion = 15.2;
@@ -261,6 +364,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CE700BF2B8161F600DC34C3 /* HomeView.swift in Sources */,
+				C1D2E3F4A5B6000000000002 /* HomeDTO.swift in Sources */,
+				C1D2E3F4A5B6010000000002 /* HomeEndpoint.swift in Sources */,
+				C1D2E3F4A5B6020000000002 /* HomeDTO+Mapping.swift in Sources */,
+				C1D2E3F4A5B6030000000002 /* HomeRepository.swift in Sources */,
+				C1D2E3F4A5B6040000000002 /* HomeFeed.swift in Sources */,
+				C1D2E3F4A5B6050000000002 /* HomeViewModel.swift in Sources */,
+				B1C2D3E4F5A6000000000002 /* HTTPMethod.swift in Sources */,
+				B1C2D3E4F5A6010000000002 /* Endpoint.swift in Sources */,
+				B1C2D3E4F5A6020000000002 /* APIError.swift in Sources */,
+				B1C2D3E4F5A6030000000002 /* APIEnvironment.swift in Sources */,
+				B1C2D3E4F5A6040000000002 /* LocalJSONLoader.swift in Sources */,
+				B1C2D3E4F5A6050000000002 /* JSONCoding+Airbnb.swift in Sources */,
+				B1C2D3E4F5A6060000000002 /* APIClient.swift in Sources */,
 				7C3B6A642B88464100A0C5CF /* ContentCell.swift in Sources */,
 				0B4070A22B9F9EA8001A12B3 /* ContentHeader.swift in Sources */,
 				7C3B6A662B884AAB00A0C5CF /* LargeSquareCell.swift in Sources */,
@@ -341,6 +457,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9CWTM4F934;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -364,6 +481,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -404,6 +522,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9CWTM4F934;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -420,6 +539,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -432,7 +552,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9CWTM4F934;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Airbnb-clone/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Airbnb-clone";
@@ -462,7 +581,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9CWTM4F934;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Airbnb-clone/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Airbnb-clone";

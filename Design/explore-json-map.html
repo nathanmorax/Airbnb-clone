@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>explore.json Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --page:#F3F3F6; --panel:#FFFFFF; --ink:#1B1B21; --muted:#5F5F6B; --rule:#DCDCE3; --soft:#F7F7FA;
+  --accent:#D70F4A; --accentSoft:#FCE6ED;
+  --home:#D70F4A; --homeSoft:#FCE6ED;
+  --list:#2F6FB0; --listSoft:#E3EEF9;
+  --host:#6B4C9A; --hostSoft:#EEE8F7;
+  --rev:#1F7A4D; --revSoft:#E2F3EA;
+  --str:#1F7A4D; --num:#2F6FB0; --bool:#9A5B00; --nul:#8A8A96; --key:#1B1B21;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --page:#121216; --panel:#1B1B21; --ink:#ECECF1; --muted:#9D9DAA; --rule:#2E2E37; --soft:#16161B;
+    --accent:#FF5A82; --accentSoft:#3A1824;
+    --home:#FF5A82; --homeSoft:#3A1824; --list:#6FA8E6; --listSoft:#16283B;
+    --host:#B196DE; --hostSoft:#2A2238; --rev:#5CCB93; --revSoft:#15301F;
+    --str:#7FD3A6; --num:#86B7EE; --bool:#F0B35A; --nul:#7D7D8A; --key:#ECECF1;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --page:#121216; --panel:#1B1B21; --ink:#ECECF1; --muted:#9D9DAA; --rule:#2E2E37; --soft:#16161B;
+  --accent:#FF5A82; --accentSoft:#3A1824;
+  --home:#FF5A82; --homeSoft:#3A1824; --list:#6FA8E6; --listSoft:#16283B;
+  --host:#B196DE; --hostSoft:#2A2238; --rev:#5CCB93; --revSoft:#15301F;
+  --str:#7FD3A6; --num:#86B7EE; --bool:#F0B35A; --nul:#7D7D8A; --key:#ECECF1;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+.muted{color:var(--muted)}
+body{margin:0;background:var(--page);color:var(--ink);font:15px/1.55 "IBM Plex Sans",system-ui,sans-serif;padding-inline:16px;padding-block:36px 64px}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+.mono,code{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:13px}
+h2 code{font-size:.9em}
+.eyebrow{font:500 12px/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+h1{margin:0;font-size:34px;line-height:1.15;font-weight:600;letter-spacing:-.01em;text-wrap:balance}
+h2{margin:0 0 6px;font-size:20px;font-weight:600;text-wrap:balance}
+.lede{margin:12px 0 0;color:var(--muted);max-width:68ch}
+.sub{margin:0 0 16px;color:var(--muted);max-width:70ch;font-size:14px}
+.panel{background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:22px}
+.scroll-x{overflow-x:auto}
+
+/* ---------- overview map ---------- */
+.map{display:grid;grid-template-columns:minmax(150px,200px) 1fr;gap:0 40px;align-items:center;position:relative}
+@media (max-width:720px){.map{grid-template-columns:1fr;gap:16px}}
+.root{border:2px solid var(--ink);border-radius:12px;padding:14px 16px;background:var(--panel);position:relative;z-index:1}
+.root b{font:600 15px/1.2 "IBM Plex Mono",monospace;display:block}
+.root span{font-size:13px;color:var(--muted)}
+.branches{display:flex;flex-direction:column;gap:12px;position:relative}
+.branch{display:grid;grid-template-columns:1fr auto;gap:4px 12px;border:1px solid var(--rule);border-left:5px solid var(--c);border-radius:10px;padding:12px 14px;background:var(--panel);position:relative;z-index:1;cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%}
+.branch:hover{background:var(--soft)}
+.branch:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.branch .k{font:600 15px/1.2 "IBM Plex Mono",monospace;color:var(--c)}
+.branch .n{font:500 12px/1 "IBM Plex Mono",monospace;background:var(--cs);color:var(--c);padding:5px 8px;border-radius:6px;white-space:nowrap;align-self:start}
+.branch .d{grid-column:1/-1;font-size:13.5px;color:var(--muted)}
+.branch .who{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.chip{font:500 11.5px/1 "IBM Plex Mono",monospace;border:1px solid var(--rule);border-radius:999px;padding:5px 9px;color:var(--muted);background:var(--panel)}
+.chip.live{border-color:var(--home);color:var(--home);background:var(--homeSoft)}
+.b-home{--c:var(--home);--cs:var(--homeSoft)}
+.b-list{--c:var(--list);--cs:var(--listSoft)}
+.b-host{--c:var(--host);--cs:var(--hostSoft)}
+.b-rev{--c:var(--rev);--cs:var(--revSoft)}
+#wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:visible}
+@media (max-width:720px){#wires{display:none}}
+
+/* ---------- relations ---------- */
+.rel{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:stretch}
+@media (max-width:760px){.rel{grid-template-columns:1fr}}
+.ent{border:1px solid var(--rule);border-top:4px solid var(--c);border-radius:10px;padding:14px;background:var(--panel)}
+.ent h3{margin:0 0 8px;font:600 14px/1.2 "IBM Plex Mono",monospace;color:var(--c)}
+.ent ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+.ent li{font:13px/1.4 "IBM Plex Mono",monospace;display:flex;justify-content:space-between;gap:8px}
+.ent li em{font-style:normal;color:var(--muted)}
+.ent li.fk{color:var(--c)}
+.ent li.pk b{text-decoration:underline;text-underline-offset:3px}
+.arrows{margin:14px 0 0;display:flex;flex-direction:column;gap:6px;font-size:14px}
+.arrows div{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.arrows code{background:var(--soft);border:1px solid var(--rule);border-radius:5px;padding:1px 6px}
+
+/* ---------- home breakdown ---------- */
+.home-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.hs{border:1px solid var(--rule);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px;background:var(--panel)}
+.hs .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.hs .top b{font:600 14px/1.2 "IBM Plex Mono",monospace;color:var(--home)}
+.hs .top span{font:500 12px/1 "IBM Plex Mono",monospace;color:var(--muted)}
+.hs .ui{font-size:13px;color:var(--muted)}
+.hs ol{margin:0;padding-left:18px;font-size:13px;display:flex;flex-direction:column;gap:2px}
+.hs .sw{font:12px/1.4 "IBM Plex Mono",monospace;color:var(--muted);border-top:1px dashed var(--rule);padding-top:8px}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:16px;font-size:13px}
+.flow .step{border:1px solid var(--rule);background:var(--soft);border-radius:8px;padding:7px 10px;font:500 12.5px/1.2 "IBM Plex Mono",monospace}
+.flow .arr{color:var(--muted)}
+
+/* ---------- listings table ---------- */
+table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 12px 8px 0;border-bottom:1px solid var(--rule);vertical-align:top;white-space:nowrap}
+th{font-weight:500;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+td.num{text-align:right}
+th.num{text-align:right}
+td.wrap{white-space:normal;min-width:200px}
+tr:last-child td{border-bottom:0}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--list);margin-right:6px}
+.schema{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:4px 24px;margin-top:6px}
+.schema div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--rule);padding:5px 0;font:13px/1.35 "IBM Plex Mono",monospace}
+.schema em{font-style:normal;color:var(--muted)}
+
+$("fieldCount").textContent = Object.keys(DATA.listings[0]).length;
+
+/* ---------- tree ---------- */
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.toolbar button,.toolbar input{font:500 13px/1 "IBM Plex Sans",system-ui,sans-serif;border:1px solid var(--rule);background:var(--panel);color:var(--ink);border-radius:8px;padding:9px 12px}
+.toolbar button{cursor:pointer}
+.toolbar button:hover{background:var(--soft)}
+.toolbar input{flex:1;min-width:180px}
+.toolbar :focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.tree{font:13px/1.7 "IBM Plex Mono",ui-monospace,monospace;overflow-x:auto;background:var(--soft);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;max-height:640px;overflow-y:auto}
+.tree details{margin-left:16px}
+.tree>details{margin-left:0}
+.tree summary{cursor:pointer;list-style:none;white-space:nowrap}
+.tree summary::-webkit-details-marker{display:none}
+.tree summary::before{content:"▸";display:inline-block;width:14px;color:var(--muted);transition:transform .12s}
+.tree details[open]>summary::before{transform:rotate(90deg)}
+.tree .leaf{margin-left:30px;white-space:nowrap}
+.tree .k{color:var(--key);font-weight:500}
+.tree .s{color:var(--str)}
+.tree .nm{color:var(--num)}
+.tree .b{color:var(--bool)}
+.tree .z{color:var(--nul)}
+.tree .meta{color:var(--muted)}
+.tree mark{background:var(--accentSoft);color:inherit;border-radius:3px}
+@media (prefers-reduced-motion: reduce){.tree summary::before{transition:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<header>
+  <p class="eyebrow">Airbnb-clone · Mocks/explore.json</p>
+  <h1>Qué hay dentro de explore.json</h1>
+  <p class="lede">Es el archivo de datos del tab <b>Explore</b>. Tiene 4 bloques en la raíz: uno que ya alimenta tu Home y tres que usarán las pantallas de búsqueda y detalle de alojamiento.</p>
+</header>
+
+<section class="panel">
+  <h2>El mapa general</h2>
+  <p class="sub">Toca un bloque para abrirlo en el explorador de abajo.</p>
+  <div class="map" id="map">
+    <svg id="wires" aria-hidden="true"></svg>
+    <div class="root" id="rootNode"><b>explore.json</b><span>objeto con 4 llaves · ~30 KB</span></div>
+    <div class="branches" id="branches"></div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>1 · <code>home</code>: lo que ya usa tu pantalla Home</h2>
+  <p class="sub">Tu <code>HomeEndpoint</code> lee <code>explore.json → "home"</code>. Cada llave se convierte en una <code>Section</code> de tu collection view, en este orden.</p>
+  <div class="home-grid" id="homeGrid"></div>
+  <div class="flow" aria-label="Recorrido de los datos">
+    <span class="step">explore.json → "home"</span><span class="arr">→</span>
+    <span class="step">HomeDTO</span><span class="arr">→</span>
+    <span class="step">toDomain()</span><span class="arr">→</span>
+    <span class="step">HomeFeed</span><span class="arr">→</span>
+    <span class="step">snapshot</span><span class="arr">→</span>
+    <span class="step">HomeView</span>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>2 · Cómo se relacionan <code>listings</code>, <code>hosts</code> y <code>reviews</code></h2>
+  <p class="sub">Funcionan como tablas de una base de datos: se conectan por IDs. Todavía no se usan en la app; son para Search results y Listing detail.</p>
+  <div class="rel" id="rel"></div>
+  <div class="arrows">
+    <div><code>listings[].hostId</code><span>→ apunta a</span><code>hosts[].id</code><span class="muted">(quién renta el lugar)</span></div>
+    <div><code>reviews[].listingId</code><span>→ apunta a</span><code>listings[].id</code><span class="muted">(de qué lugar es la reseña)</span></div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>3 · Los 12 alojamientos de <code>listings</code></h2>
+  <p class="sub">Cada uno trae <span id="fieldCount">24</span> campos. Aquí están los principales; el resto (fotos, amenidades, camas, coordenadas) está en el explorador.</p>
+  <div class="scroll-x"><table id="listTable"></table></div>
+  <h3 style="margin:22px 0 4px;font-size:15px">Estructura de cada listing</h3>
+  <div class="schema" id="schema"></div>
+</section>
+
+<section class="panel" id="explorer">
+  <h2>4 · Explorador completo</h2>
+  <p class="sub">El JSON real, navegable. Busca una llave o un valor (por ejemplo <code>Estes Park</code> o <code>hostId</code>).</p>
+  <div class="toolbar">
+    <input id="q" type="search" placeholder="Buscar en el JSON…" aria-label="Buscar en el JSON">
+    <button type="button" id="expand">Expandir todo</button>
+    <button type="button" id="collapse">Colapsar todo</button>
+  </div>
+  <div class="tree" id="tree" role="tree"></div>
+</section>
+
+</main>
+
+<script>
+const DATA = {"home": {"nearby": [{"title": "Estes Park", "subtitle": "1.5 hour drive", "image": "estes-park"}, {"title": "Breckenridge", "subtitle": "2.5 hour drive", "image": "breckenridge"}, {"title": "Grand Lake", "subtitle": "3 hour drive", "image": "grand-lake"}, {"title": "Idaho Springs", "subtitle": "2 hour drive", "image": "idaho-springs"}, {"title": "Glenwood Springs", "subtitle": "4.5 hour drive", "image": "glenwood-springs"}, {"title": "Pagosa Springs", "subtitle": "7.5 hour drive", "image": "pagosa-springs"}], "stays": [{"title": "Entire homes", "subtitle": null, "image": "entire-homes"}, {"title": "Cabins and cottages", "subtitle": null, "image": "cabins-cottages"}, {"title": "Unique stays", "subtitle": null, "image": "unique-stays"}, {"title": "Pets welcome", "subtitle": null, "image": "pets-welcome"}], "experiences": [{"title": "Online Experiences", "subtitle": "Travel the world without leaving home.", "image": "online-experiences"}, {"title": "Experiences", "subtitle": "Things to do wherever you are.", "image": "experiences"}, {"title": "Adventures", "subtitle": "Multi-day trips with meals and stays.", "image": "adventures"}], "hosting": [{"title": "Host your home", "subtitle": null, "image": "host-your-home"}, {"title": "Host an Online Experience", "subtitle": null, "image": "host-online-experience"}, {"title": "Host an Experience", "subtitle": null, "image": "host-experience"}], "info": [{"title": "For guests", "links": [{"title": "Our COVID-19 response", "subtitle": "Health and safety updates"}, {"title": "Cancellation options", "subtitle": "Learn what's covered"}, {"title": "Help Center", "subtitle": "Get support"}]}, {"title": "For hosts", "links": [{"title": "Message from Brian Chesky", "subtitle": "Hear from our CEO"}, {"title": "Resources for hosting", "subtitle": "What's impacted by COVID-19"}, {"title": "Providing frontline stays", "subtitle": "Learn how to help"}]}, {"title": "For COVID-19 responders", "links": [{"title": "Frontline stays", "subtitle": "Learn about our program"}, {"title": "Sign up", "subtitle": "Check for housing options"}, {"title": "Make a donation", "subtitle": "Support nonprofit organizations"}]}, {"title": "More", "links": [{"title": "Airbnb Newsroom", "subtitle": "Latest announcements"}, {"title": "World Health Organization", "subtitle": "Education and updates"}, {"title": "Project Lighthouse", "subtitle": "Finding and fighting discrimination"}]}]}, "listings": [{"id": 1, "city": "Estes Park", "state": "Colorado", "title": "Riverside A-frame cabin", "type": "Entire cabin", "category": "cabins-cottages", "rating": 4.96, "reviewCount": 212, "pricePerNight": 214, "currency": "USD", "superhost": true, "guests": 6, "bedrooms": 2, "beds": 3, "baths": 2, "hostId": 1, "images": ["cabins-cottages", "estes-park", "unique-stays"], "highlights": [{"icon": "house", "title": "Entire home", "subtitle": "You'll have the place to yourself."}, {"icon": "sparkles", "title": "Enhanced Clean", "subtitle": "This host committed to the 5-step enhanced cleaning process."}, {"icon": "key", "title": "Self check-in", "subtitle": "Check yourself in with the keypad."}, {"icon": "mappin.and.ellipse", "title": "Great location", "subtitle": "95% of recent guests gave the location 5 stars."}], "amenities": ["Wifi", "Kitchen", "Fireplace", "Free parking", "Washer", "Hot tub"], "description": "Riverside A-frame cabin in Estes Park, Colorado. Bright, quiet and a short drive from the best trails in the area.", "sleepingArrangements": [{"room": "Bedroom 1", "beds": "1 queen bed"}, {"room": "Bedroom 2", "beds": "2 single beds"}, {"room": "Living room", "beds": "1 sofa bed"}], "cancellationPolicy": "Free cancellation until 48 hours before check-in.", "latitude": 40.3772, "longitude": -105.5217}, {"id": 2, "city": "Estes Park", "state": "Colorado", "title": "Modern mountain home with hot tub", "type": "Entire house", "category": "entire-homes", "rating": 4.89, "reviewCount": 147, "pricePerNight": 289, "currency": "USD", "superhost": false, "guests": 8, "bedrooms": 3, "beds": 4, "baths": 2.5, "hostId": 2, "images": ["entire-homes", "host-your-home", "estes-park"], "highlights": [{"icon": "house", "title": "Entire home", "subtitle": "You'll have the place to yourself."}, {"icon": "sparkles", "title": "Enhanced Clean", "subtitle": "This host committed to the 5-step enhanced cleaning process."}, {"icon": "mappin.and.ellipse", "title": "Great location", "subtitle": "95% of recent guests gave the location 5 stars."}], "amenities": ["Wifi", "Kitchen", "Hot tub", "Free parking", "Dedicated workspace"], "description": "Modern mountain home with hot tub in Estes Park, Colorado. Bright, quiet and a short drive from the best trails in the area.", "sleepingArrangements": [{"room": "Bedroom 1", "beds": "1 queen bed"}, {"room": "Bedroom 2", "beds": "2 single beds"}, {"room": "Bedroom 3", "beds": "2 single beds"}, {"room": "Living room", "beds": "1 sofa bed"}], "cancellationPolicy": "Free cancellation until 48 hours before check-in.", "latitude": 40.3845, "longitude": -105.5302}, {"id": 3, "city": "Estes Park", "state": "Colorado", "title": "Treehouse above the pines", "type": "Treehouse", "category": "unique-stays", "rating": 4.98, "reviewCount": 96, "pricePerNight": 176, "currency": "USD", "superhost": true, "guests": 2, "bedrooms": 1, "beds": 1, "baths": 1, "hostId": 3, "images": ["unique-stays", "cabins-cottages"], "highlights": [{"icon": "sparkles", "title": "Enhanced Clean", "subtitle": "This host committed to the 5-step enhanced cleaning process."}, {"icon": "key", "title": "Self check-in", "subtitle": "Check yourself in with the keypad."}, {"icon": "mappin.and.ellipse", "title": "Great location", "subtitle": "95% of recent guests gave the location 5 stars."}], "amenities": ["Wifi", "Coffee maker", "Heating", "Free parking"], "description": "Treehouse above the pines in Estes Park, Colorado. Bright, quiet and a short drive from the best trails in the area.", "sleepingArrangements": [{"room": "Bedroom 1", "beds": "1 queen bed"}], "cancellationPolicy": "Free cancellation until 48 hours before check-in.", "latitude": 40.3701, "longitude": -105.5098}, {"id": 4, "city": "Estes Park", "state": "Colorado", "title": "Dog-friendly cottage near downtown", "type": "Entire cottage", "category": "pets-welcome", "rating": 4.91, "reviewCount": 63, "pricePerNight": 142, "currency": "USD", "superhost": false, "guests": 4, "bedrooms": 2, "beds": 2, "baths": 1, "hostId": 4, "images": ["pets-welcome", "entire-homes"], "highlights": [{"icon": "house", "title": "Entire home", "subtitle": "You'll have the place to yourself."}, {"icon": "pawprint", "title": "Pets allowed", "subtitle": "Bring your dog along."}, {"icon": "mappin.and.ellipse", "title": "Great location", "subtitle": "95% of recent guests gave the location 5 stars."}], "amenities": ["Wifi", "Kitchen", "Fenced yard", "Free parking"], "description": "Dog-friendly cottage near downtown in Estes Park, Colorado. Bright, quiet and a short drive from the best trails in the area.", "sleepingArrangements": [{"room": "Bedroom 1", "beds": "1 queen bed"}, {"room": "Bedroom 2", "beds": "2 single beds"}], "cancellationPolicy": "Free cancellation until 48 hours before check-in.", "latitude": 40.3759, "longitude": -105.5189}, {"id": 5, "city": "Estes Park", "state": "Colorado", "title": "Lake view loft with fireplace", "type": "Entire loft", "category": "entire-homes", "rating": 4.85, "reviewCount": 88, "pricePerNight": 159, "currency": "USD", "superhost": true, "guests": 3, "bedrooms": 1, "beds": 2, "baths": 1, "hostId": 5, "images": ["host-your-home", "grand-lake"], "highlights": [{"icon": "house", "title": "Entire home", "subtitle": "You'll have the place to yourself."}, {"icon": "sparkles", "title": "Enhanced Clean", "subtitle": "This host committed to the 5-step enhanced cleaning process."}, {"icon": "key", "title": "Self check-in", "subtitle": "Check yourself in with the keypad."}], "amenities": ["Wifi", "Kitchen", "Fireplace", "Lake view"], "description": "Lake view loft with fireplace in Estes Park, Colorado. Bright, quiet and a short drive from the best trails in the area.", "sleepingArrangements": [{"room": "Bedroom 1", "beds": "1 queen bed"}, {"room": "Living room", "beds": "1 sofa bed"}], "cancellationPolicy": "Free cancellation until 48 hours before check-in.", "latitude": 40.38, "longitude": -105.525}, {"id": 6, "city": "Breckenridge", "state": "Colorado", "title": "Ski-in ski-out condo", "type": "Entire condo", "category": "entire-homes", "rating": 4.87, "reviewCount": 301, "pricePerNight": 265, "currency": "USD", "superhost": false, "guests": 4, "bedrooms": 2, "beds": 2, "baths": 2, "hostId": 2, "images": ["breckenridge", "entire-homes"], "highlights": [{"icon": "house", "title": "Entire home", "subtitle": "You'll have the place to yourself."}, {"icon": "sparkles", "title": "Enhanced Clean", "subtitle": "This host committed to the 5-step enhanced cleaning process."}, {"icon": "mappin.and.ellipse", "title": "Great location", "subtitle": "95% of recent guests gave the location 5 stars."}], "amenities": ["Wifi", "Kitchen", "Ski storage", "Pool", "Free parking"], "description": "Ski-in ski-out condo in Breckenridge, Colorado. Bright, quiet and a short drive from the best trails in the area.", "sleepingArrangements": [{"room": "Bedroom 1", "beds": "1 queen bed"}, {"room": "Bedroom 2", "beds": "2 single beds"}], "cancellationPolicy": "Free cancellation until 48 hours before check-in.", "latitude": 39.4817, "longitude": -106.0384}, {"id": 7, "city": "Breckenridge", "state": "Colorado", "title": "Historic miner's cabin on Main Street", "type": "Entire cabin", "category": "cabins-cottages", "rating": 4.93, "reviewCount": 178, "pricePerNight": 198, "currency": "USD", "superhost": true, "guests": 4, "bedrooms": 2, "beds": 3, "baths": 1, "hostId": 3, "images": ["cabins-cottages", "breckenridge"], "highlights": [{"icon": "house", "title": "Entire home", "subtitle": "You'll have the place to yourself."}, {"icon": "key", "title": "Self check-in", "subtitle": "Check yourself in with the keypad."}, {"icon": "mappin.and.ellipse", "title": "Great location", "subtitle": "95% of recent guests gave the location 5 stars."}], "amenities": ["Wifi", "Kitchen", "Wood stove", "Washer"], "description": "Historic miner's cabin on Main Street in Breckenridge, Colorado. Bright, quiet and a short drive from the best trails in the area.", "sleepingArrangements": [{"room": "Bedroom 1", "beds": "1 queen bed"}, {"room": "Bedroom 2", "beds": "2 single beds"}, {"room": "Living room", "beds": "1 sofa bed"}], "cancellationPolicy": "Free cancellation until 48 hours before check-in.", "latitude": 39.4802, "longitude": -106.0461}, {"id": 8, "city": "Breckenridge", "state": "Colorado", "title": "Tiny home with mountain views", "type": "Tiny home", "category": "unique-stays", "rating": 4.95, "reviewCount": 124, "pricePerNight": 149, "currency": "USD", "superhost": true, "guests": 2, "bedrooms": 1, "beds": 1, "baths": 1, "hostId": 5, "images": ["unique-stays", "breckenridge"], "highlights": [{"icon": "sparkles", "title": "Enhanced Clean", "subtitle": "This host committed to the 5-step enhanced cleaning process."}, {"icon": "key", "title": "Self check-in", "subtitle": "Check yourself in with the keypad."}], "amenities": ["Wifi", "Kitchenette", "Heating", "Mountain view"], "description": "Tiny home with mountain views in Breckenridge, Colorado. Bright, quiet and a short drive from the best trails in the area.", "sleepingArrangements": [{"room": "Bedroom 1", "beds": "1 queen bed"}], "cancellationPolicy": "Free cancellation until 48 hours before check-in.", "latitude": 39.489, "longitude": -106.05}, {"id": 9, "city": "Grand Lake", "state": "Colorado", "title": "Lakefront cabin with private dock", "type": "Entire cabin", "category": "cabins-cottages", "rating": 4.97, "reviewCount": 89, "pricePerNight": 245, "currency": "USD", "superhost": true, "guests": 6, "bedrooms": 3, "beds": 4, "baths": 2, "hostId": 1, "images": ["grand-lake", "cabins-cottages"], "highlights": [{"icon": "house", "title": "Entire home", "subtitle": "You'll have the place to yourself."}, {"icon": "sparkles", "title": "Enhanced Clean", "subtitle": "This host committed to the 5-step enhanced cleaning process."}, {"icon": "mappin.and.ellipse", "title": "Great location", "subtitle": "95% of recent guests gave the location 5 stars."}], "amenities": ["Wifi", "Kitchen", "Kayaks", "Fire pit", "Free parking"], "description": "Lakefront cabin with private dock in Grand Lake, Colorado. Bright, quiet and a short drive from the best trails in the area.", "sleepingArrangements": [{"room": "Bedroom 1", "beds": "1 queen bed"}, {"room": "Bedroom 2", "beds": "2 single beds"}, {"room": "Bedroom 3", "beds": "2 single beds"}, {"room": "Living room", "beds": "1 sofa bed"}], "cancellationPolicy": "Free cancellation until 48 hours before check-in.", "latitude": 40.2522, "longitude": -105.8233}, {"id": 10, "city": "Grand Lake", "state": "Colorado", "title": "Cozy cottage, pets welcome", "type": "Entire cottage", "category": "pets-welcome", "rating": 4.88, "reviewCount": 57, "pricePerNight": 131, "currency": "USD", "superhost": false, "guests": 4, "bedrooms": 1, "beds": 2, "baths": 1, "hostId": 4, "images": ["pets-welcome", "grand-lake"], "highlights": [{"icon": "house", "title": "Entire home", "subtitle": "You'll have the place to yourself."}, {"icon": "pawprint", "title": "Pets allowed", "subtitle": "Bring your dog along."}], "amenities": ["Wifi", "Kitchen", "Fenced yard"], "description": "Cozy cottage, pets welcome in Grand Lake, Colorado. Bright, quiet and a short drive from the best trails in the area.", "sleepingArrangements": [{"room": "Bedroom 1", "beds": "1 queen bed"}, {"room": "Living room", "beds": "1 sofa bed"}], "cancellationPolicy": "Free cancellation until 48 hours before check-in.", "latitude": 40.2489, "longitude": -105.8191}, {"id": 11, "city": "Idaho Springs", "state": "Colorado", "title": "Hot springs guest suite", "type": "Private suite", "category": "unique-stays", "rating": 4.9, "reviewCount": 142, "pricePerNight": 119, "currency": "USD", "superhost": true, "guests": 2, "bedrooms": 1, "beds": 1, "baths": 1, "hostId": 5, "images": ["idaho-springs", "unique-stays"], "highlights": [{"icon": "sparkles", "title": "Enhanced Clean", "subtitle": "This host committed to the 5-step enhanced cleaning process."}, {"icon": "key", "title": "Self check-in", "subtitle": "Check yourself in with the keypad."}, {"icon": "mappin.and.ellipse", "title": "Great location", "subtitle": "95% of recent guests gave the location 5 stars."}], "amenities": ["Wifi", "Coffee maker", "Private entrance"], "description": "Hot springs guest suite in Idaho Springs, Colorado. Bright, quiet and a short drive from the best trails in the area.", "sleepingArrangements": [{"room": "Bedroom 1", "beds": "1 queen bed"}], "cancellationPolicy": "Free cancellation until 48 hours before check-in.", "latitude": 39.7425, "longitude": -105.5136}, {"id": 12, "city": "Glenwood Springs", "state": "Colorado", "title": "Canyon view home", "type": "Entire house", "category": "entire-homes", "rating": 4.86, "reviewCount": 76, "pricePerNight": 219, "currency": "USD", "superhost": false, "guests": 6, "bedrooms": 3, "beds": 3, "baths": 2, "hostId": 2, "images": ["glenwood-springs", "entire-homes"], "highlights": [{"icon": "house", "title": "Entire home", "subtitle": "You'll have the place to yourself."}, {"icon": "sparkles", "title": "Enhanced Clean", "subtitle": "This host committed to the 5-step enhanced cleaning process."}], "amenities": ["Wifi", "Kitchen", "Patio", "Free parking"], "description": "Canyon view home in Glenwood Springs, Colorado. Bright, quiet and a short drive from the best trails in the area.", "sleepingArrangements": [{"room": "Bedroom 1", "beds": "1 queen bed"}, {"room": "Bedroom 2", "beds": "2 single beds"}, {"room": "Bedroom 3", "beds": "2 single beds"}], "cancellationPolicy": "Free cancellation until 48 hours before check-in.", "latitude": 39.5505, "longitude": -107.3248}], "hosts": [{"id": 1, "name": "Maren", "superhost": true, "joinedYear": 2016, "avatarColor": "#B5485D", "responseRate": 100}, {"id": 2, "name": "Diego", "superhost": false, "joinedYear": 2018, "avatarColor": "#3E6C8F", "responseRate": 96}, {"id": 3, "name": "Lena", "superhost": true, "joinedYear": 2015, "avatarColor": "#5B7F3A", "responseRate": 100}, {"id": 4, "name": "Sam", "superhost": false, "joinedYear": 2019, "avatarColor": "#8A5A2B", "responseRate": 92}, {"id": 5, "name": "Priya", "superhost": true, "joinedYear": 2017, "avatarColor": "#6B4C9A", "responseRate": 99}], "reviews": [{"id": 1, "listingId": 1, "author": "Alex", "rating": 5, "date": "2026-09-10T12:00:00Z", "text": "Exactly like the photos and the host answered right away."}, {"id": 2, "listingId": 1, "author": "Jordan", "rating": 5, "date": "2026-08-11T12:00:00Z", "text": "Quiet, clean and close to everything. We'd book again."}, {"id": 3, "listingId": 1, "author": "Camila", "rating": 4, "date": "2026-07-12T12:00:00Z", "text": "The views are even better in person. Great for a long weekend."}, {"id": 4, "listingId": 2, "author": "Alex", "rating": 5, "date": "2026-09-10T12:00:00Z", "text": "Exactly like the photos and the host answered right away."}, {"id": 5, "listingId": 2, "author": "Jordan", "rating": 5, "date": "2026-08-11T12:00:00Z", "text": "Quiet, clean and close to everything. We'd book again."}, {"id": 6, "listingId": 3, "author": "Alex", "rating": 5, "date": "2026-09-10T12:00:00Z", "text": "Exactly like the photos and the host answered right away."}, {"id": 7, "listingId": 3, "author": "Jordan", "rating": 5, "date": "2026-08-11T12:00:00Z", "text": "Quiet, clean and close to everything. We'd book again."}, {"id": 8, "listingId": 3, "author": "Camila", "rating": 4, "date": "2026-07-12T12:00:00Z", "text": "The views are even better in person. Great for a long weekend."}, {"id": 9, "listingId": 4, "author": "Alex", "rating": 5, "date": "2026-09-10T12:00:00Z", "text": "Exactly like the photos and the host answered right away."}, {"id": 10, "listingId": 4, "author": "Jordan", "rating": 5, "date": "2026-08-11T12:00:00Z", "text": "Quiet, clean and close to everything. We'd book again."}, {"id": 11, "listingId": 5, "author": "Alex", "rating": 5, "date": "2026-09-10T12:00:00Z", "text": "Exactly like the photos and the host answered right away."}, {"id": 12, "listingId": 5, "author": "Jordan", "rating": 5, "date": "2026-08-11T12:00:00Z", "text": "Quiet, clean and close to everything. We'd book again."}, {"id": 13, "listingId": 5, "author": "Camila", "rating": 4, "date": "2026-07-12T12:00:00Z", "text": "The views are even better in person. Great for a long weekend."}, {"id": 14, "listingId": 6, "author": "Alex", "rating": 5, "date": "2026-09-10T12:00:00Z", "text": "Exactly like the photos and the host answered right away."}, {"id": 15, "listingId": 6, "author": "Jordan", "rating": 5, "date": "2026-08-11T12:00:00Z", "text": "Quiet, clean and close to everything. We'd book again."}, {"id": 16, "listingId": 7, "author": "Alex", "rating": 5, "date": "2026-09-10T12:00:00Z", "text": "Exactly like the photos and the host answered right away."}, {"id": 17, "listingId": 7, "author": "Jordan", "rating": 5, "date": "2026-08-11T12:00:00Z", "text": "Quiet, clean and close to everything. We'd book again."}, {"id": 18, "listingId": 7, "author": "Camila", "rating": 4, "date": "2026-07-12T12:00:00Z", "text": "The views are even better in person. Great for a long weekend."}, {"id": 19, "listingId": 8, "author": "Alex", "rating": 5, "date": "2026-09-10T12:00:00Z", "text": "Exactly like the photos and the host answered right away."}, {"id": 20, "listingId": 8, "author": "Jordan", "rating": 5, "date": "2026-08-11T12:00:00Z", "text": "Quiet, clean and close to everything. We'd book again."}, {"id": 21, "listingId": 9, "author": "Alex", "rating": 5, "date": "2026-09-10T12:00:00Z", "text": "Exactly like the photos and the host answered right away."}, {"id": 22, "listingId": 9, "author": "Jordan", "rating": 5, "date": "2026-08-11T12:00:00Z", "text": "Quiet, clean and close to everything. We'd book again."}, {"id": 23, "listingId": 9, "author": "Camila", "rating": 4, "date": "2026-07-12T12:00:00Z", "text": "The views are even better in person. Great for a long weekend."}, {"id": 24, "listingId": 10, "author": "Alex", "rating": 5, "date": "2026-09-10T12:00:00Z", "text": "Exactly like the photos and the host answered right away."}, {"id": 25, "listingId": 10, "author": "Jordan", "rating": 5, "date": "2026-08-11T12:00:00Z", "text": "Quiet, clean and close to everything. We'd book again."}, {"id": 26, "listingId": 11, "author": "Alex", "rating": 5, "date": "2026-09-10T12:00:00Z", "text": "Exactly like the photos and the host answered right away."}, {"id": 27, "listingId": 11, "author": "Jordan", "rating": 5, "date": "2026-08-11T12:00:00Z", "text": "Quiet, clean and close to everything. We'd book again."}, {"id": 28, "listingId": 11, "author": "Camila", "rating": 4, "date": "2026-07-12T12:00:00Z", "text": "The views are even better in person. Great for a long weekend."}, {"id": 29, "listingId": 12, "author": "Alex", "rating": 5, "date": "2026-09-10T12:00:00Z", "text": "Exactly like the photos and the host answered right away."}, {"id": 30, "listingId": 12, "author": "Jordan", "rating": 5, "date": "2026-08-11T12:00:00Z", "text": "Quiet, clean and close to everything. We'd book again."}]};
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- overview ---------- */
+const BR = [
+  {key:"home", cls:"b-home", n:"objeto · 5 secciones", d:"El contenido de la pantalla Home: destinos cercanos, tipos de alojamiento, experiencias, hosting y el footer.", who:[["Home",true]]},
+  {key:"listings", cls:"b-list", n:`array · ${DATA.listings.length}`, d:"Alojamientos completos: precio, rating, fotos, amenidades, camas, ubicación.", who:[["Search results",false],["Listing detail",false]]},
+  {key:"hosts", cls:"b-host", n:`array · ${DATA.hosts.length}`, d:"Anfitriones. Cada listing apunta a uno con hostId.", who:[["Listing detail",false]]},
+  {key:"reviews", cls:"b-rev", n:`array · ${DATA.reviews.length}`, d:"Reseñas. Cada una apunta a un listing con listingId.", who:[["Listing detail",false]]}
+];
+$("branches").innerHTML = BR.map(b => `
+  <button type="button" class="branch ${b.cls}" data-key="${b.key}">
+    <span class="k">"${b.key}"</span><span class="n">${b.n}</span>
+    <span class="d">${b.d}</span>
+    <span class="who">${b.who.map(([w,live]) => `<span class="chip ${live?"live":""}">${live?"● conectado · ":"pendiente · "}${w}</span>`).join("")}</span>
+  </button>`).join("");
+
+function drawWires(){
+  const svg = $("wires"), map = $("map"), root = $("rootNode");
+  if (getComputedStyle(svg).display === "none") return;
+  const m = map.getBoundingClientRect(), r = root.getBoundingClientRect();
+  const x1 = r.right - m.left, y1 = r.top + r.height/2 - m.top;
+  const colors = {"b-home":"--home","b-list":"--list","b-host":"--host","b-rev":"--rev"};
+  let paths = "";
+  document.querySelectorAll(".branch").forEach(b => {
+    const br = b.getBoundingClientRect();
+    const x2 = br.left - m.left, y2 = br.top + br.height/2 - m.top, mx = (x1 + x2)/2;
+    const col = getComputedStyle(document.documentElement).getPropertyValue(colors[[...b.classList].find(c => colors[c])]).trim();
+    paths += `<path d="M${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}" fill="none" stroke="${col}" stroke-width="2"/>`;
+  });
+  svg.setAttribute("viewBox", `0 0 ${m.width} ${m.height}`);
+  svg.innerHTML = paths;
+}
+window.addEventListener("resize", drawWires);
+matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", drawWires);
+
+/* ---------- home breakdown ---------- */
+const HS = [
+  ["nearby",".nearby","Carrusel de 2 filas con miniaturas","SmallSquareCell"],
+  ["stays",".stays","“Live anywhere”","LargeSquareCell"],
+  ["experiences",".experiences","“Experience the world” (fondo invertido)","InvertedLargeSquareCell"],
+  ["hosting",".hosting","“Join millions of hosts on Airbnb”","LargeSquareCell"],
+  ["info",".info","“Stay informed” (footer gris)","FooterCell"]
+];
+$("homeGrid").innerHTML = HS.map(([k, sec, ui, cell], i) => {
+  const arr = DATA.home[k];
+  const items = k === "info"
+    ? arr.map(g => `${esc(g.title)} <span class="muted">(${g.links.length} enlaces)</span>`)
+    : arr.map(x => esc(x.title) + (x.subtitle ? ` <span class="muted">· ${esc(x.subtitle)}</span>` : ""));
+  const count = k === "info" ? `${arr.length} grupos` : `${arr.length} items`;
+  return `<div class="hs"><div class="top"><b>${i+1}. "${k}"</b><span>${count}</span></div>
+    <div class="ui">${ui}</div><ol>${items.map(t => `<li>${t}</li>`).join("")}</ol>
+    <div class="sw">Section${sec} · ${cell}</div></div>`;
+}).join("");
+
+/* ---------- relations ---------- */
+const ent = (name, cls, rows) => `<div class="ent ${cls}"><h3>${name}</h3><ul>${rows.map(([f,t,kind]) =>
+  `<li class="${kind||""}"><b>${f}</b><em>${t}</em></li>`).join("")}</ul></div>`;
+$("rel").innerHTML =
+  ent(`hosts · ${DATA.hosts.length}`, "b-host", [["id","Int","pk"],["name","String"],["superhost","Bool"],["joinedYear","Int"],["avatarColor","String"],["responseRate","Int"]]) +
+  ent(`listings · ${DATA.listings.length}`, "b-list", [["id","Int","pk"],["hostId → hosts.id","Int","fk"],["title","String"],["city","String"],["pricePerNight","Int"],["rating","Double"],[`… ${Object.keys(DATA.listings[0]).length - 6} campos más`,""]]) +
+  ent(`reviews · ${DATA.reviews.length}`, "b-rev", [["id","Int","pk"],["listingId → listings.id","Int","fk"],["author","String"],["rating","Int"],["date","ISO 8601"],["text","String"]]);
+
+/* ---------- listings table ---------- */
+const hostName = id => (DATA.hosts.find(h => h.id === id) || {}).name || "—";
+const revCount = id => DATA.reviews.filter(r => r.listingId === id).length;
+$("listTable").innerHTML = `<thead><tr><th class="num">id</th><th>title</th><th>city</th><th>category</th><th class="num">price</th><th class="num">rating</th><th>host</th><th class="num">reviews en JSON</th></tr></thead><tbody>` +
+  DATA.listings.map(l => `<tr><td class="num">${l.id}</td><td class="wrap">${esc(l.title)}</td><td><span class="dot"></span>${esc(l.city)}</td>
+    <td class="mono">${esc(l.category)}</td><td class="num">$${l.pricePerNight}</td><td class="num">★ ${l.rating.toFixed(2)}</td>
+    <td>${esc(hostName(l.hostId))}${l.superhost ? " · Superhost" : ""}</td><td class="num">${revCount(l.id)}</td></tr>`).join("") + "</tbody>";
+
+const typeOf = v => v === null ? "null" : Array.isArray(v) ? `[${v.length && typeof v[0] === "object" ? "object" : typeof v[0]}]` : Number.isInteger(v) ? "Int" : typeof v === "number" ? "Double" : typeof v === "boolean" ? "Bool" : typeof v === "string" ? "String" : "object";
+$("schema").innerHTML = Object.entries(DATA.listings[0]).map(([k,v]) => `<div><span>${k}</span><em>${typeOf(v)}</em></div>`).join("");
+
+/* ---------- tree ---------- */
+function node(key, val, depth){
+  const label = key === null ? "" : `<span class="k">${esc(typeof key === "number" ? `[${key}]` : `"${key}"`)}</span>: `;
+  if (val !== null && typeof val === "object") {
+    const isArr = Array.isArray(val), entries = isArr ? val.map((v,i) => [i,v]) : Object.entries(val);
+    const preview = isArr ? `[ ${val.length} ]` : `{ ${entries.length} }`;
+    let hint = "";
+    if (!isArr && (val.title || val.name)) hint = ` <span class="meta">· ${esc(val.title || val.name)}</span>`;
+    return `<details data-depth="${depth}" ${depth < 1 ? "open" : ""}><summary>${label}<span class="meta">${preview}</span>${hint}</summary>${entries.map(([k,v]) => node(k, v, depth+1)).join("")}</details>`;
+  }
+  const cls = val === null ? "z" : typeof val === "string" ? "s" : typeof val === "number" ? "nm" : "b";
+  const shown = typeof val === "string" ? `"${esc(val)}"` : String(val);
+  return `<div class="leaf">${label}<span class="${cls}">${shown}</span></div>`;
+}
+$("tree").innerHTML = node("explore.json", DATA, 0).replace('<span class="k">"explore.json"</span>: ', '<span class="k">explore.json</span> ');
+
+const all = () => document.querySelectorAll("#tree details");
+$("expand").onclick = () => all().forEach(d => d.open = true);
+$("collapse").onclick = () => all().forEach((d,i) => d.open = i === 0);
+
+function openKey(key){
+  const top = document.querySelector("#tree > details");
+  top.open = true;
+  [...top.children].forEach(c => {
+    if (c.tagName === "DETAILS") {
+      const isIt = c.querySelector(":scope > summary .k")?.textContent === `"${key}"`;
+      c.open = isIt;
+      if (isIt) c.scrollIntoView({block:"nearest"});
+    }
+  });
+  $("explorer").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+}
+document.querySelectorAll(".branch").forEach(b => b.addEventListener("click", () => openKey(b.dataset.key)));
+
+let timer;
+$("q").addEventListener("input", e => {
+  clearTimeout(timer);
+  timer = setTimeout(() => {
+    const q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll("#tree mark").forEach(m => m.replaceWith(...m.childNodes));
+    if (!q) return;
+    all().forEach(d => d.open = false);
+    document.querySelectorAll("#tree .k, #tree .s, #tree .nm, #tree .b").forEach(el => {
+      const t = el.textContent, i = t.toLowerCase().indexOf(q);
+      if (i < 0) return;
+      el.innerHTML = esc(t.slice(0,i)) + "<mark>" + esc(t.slice(i, i+q.length)) + "</mark>" + esc(t.slice(i+q.length));
+      let p = el.closest("details");
+      while (p) { p.open = true; p = p.parentElement.closest("details"); }
+    });
+  }, 180);
+});
+
+requestAnimationFrame(drawWires);
+if (document.fonts) document.fonts.ready.then(drawWires);
+</script>
+</body>
+</html>
